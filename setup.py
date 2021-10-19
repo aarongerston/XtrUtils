@@ -9,6 +9,6 @@ setup(
     include_package_data=True,
     license='GNU GPLv3',
     long_description=open('README.md').read(),
-    # url="",
+    url="https://github.com/aarongerston/XtrUtils/",
     install_requires=open('requirements.txt').read()
 )

@@ -3,8 +3,7 @@
 ## Installation ##
 
 1. Create a virtual environment and ensure Git works in it.
-2. Install DataObj (required dependency): `pip install git+https://insert-url-here`
-3. Run: `pip install git+https://insert-url-here`
+3. Run: `pip install git+https://github.com/aarongerston/XtrUtils/`
 
 ## Uninstallation
 
@@ -12,7 +11,7 @@ Run: `pip uninstall XtrUtils`
     
 ## Xtrodes Offline Signal Statistics and Manipulation class example ##
 
-    from XtrUtils.Stats import Stats
+    from XtrUtils.stats import Stats
     from XtrUtils.utils import Utils
     from XtrUtils.filterbank import Filterer
 
