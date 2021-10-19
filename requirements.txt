@@ -1,0 +1,7 @@
+numpy
+scipy
+matplotlib
+typing
+seaborn
+ptitprince
+PyQt5
