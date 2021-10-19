@@ -3,7 +3,7 @@
 ## Installation ##
 
 1. Create a virtual environment and ensure Git works in it.
-3. Run: `pip install git+https://github.com/aarongerston/XtrUtils/`
+2. Run: `pip install git+https://github.com/aarongerston/XtrUtils/`
 
 ## Uninstallation
 
