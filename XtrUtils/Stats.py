@@ -7,7 +7,6 @@ from typing import Union
 import scipy.signal as sig
 import matplotlib.pyplot as plt
 
-from DataObj import DataObj
 from XtrUtils.utils import Utils
 from XtrViz.plotter import Plotter
 
