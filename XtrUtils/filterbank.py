@@ -98,3 +98,35 @@ class Filterer(object):
             out[nans, cols] = np.nan
 
         return out
+
+    @staticmethod
+    def decimate(data: np.ndarray, ts: np.ndarray, fs: float, decimation_factor: int = 1):
+        """
+        Decimates 2D <data> matrix column-wise by a factor of <decimation_factor>.
+
+        :param data: 2D data matrix. Rows are samples, columns are channels.
+        :param ts: 1D timestamp vector equal in samples to number of rows of <data>.
+        :param fs: sampling rate.
+        :param decimation_factor: returned data is decimated by a factor of <decimation_factor>
+        :return: Decimated data matrix, <decimation_factor>-times smaller than the input <data>.
+        """
+
+        if (decimation_factor == 1) or any(arg for arg in (data, ts, fs, decimation_factor) is None):
+            return data, ts, fs
+
+        # Performs the same computation as
+        # ``data = sig.decimate(data, q=decimation_factor, axis=0, n=2)``
+        # except that the computation is done column-by-column instead of all at once to prevent crashing
+        system = sig.dlti(*sig.cheby1(N=2, rp=0.05, Wn=0.8 / decimation_factor))
+        b, a = system.num, system.den
+        for col in range(data.shape[1]):
+            data[:, col] = sig.filtfilt(b, a, data[:, col], axis=0)
+        data = data[::decimation_factor, :]
+
+        # Downsample timestamp vector without filtering
+        ts = ts[::decimation_factor]
+
+        # Update effective sampling rate
+        fs = fs / decimation_factor
+
+        return data, ts, fs
